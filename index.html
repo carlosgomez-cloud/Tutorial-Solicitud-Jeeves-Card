@@ -294,7 +294,7 @@ h1 em{font-style:normal;color:var(--gold)}
       <details><summary>No veo los datos de mi tarjeta física en la app</summary><ul><li>Es normal: por ahora la app solo muestra los datos de las tarjetas virtuales.</li></ul></details>
       <details><summary>¿Cómo pido una tarjeta virtual adicional desde la app?</summary><ul>
         <li>Entra a <b>Tarjetas</b> y toca <b>Solicitar tarjeta</b> → <b>Tarjeta virtual</b>.</li>
-        <li>Escribe el nombre, el límite y la frecuencia del límite (mensual, semanal, diaria o de por vida).</li>
+        <li>Escribe el nombre y el límite, y en la frecuencia del límite selecciona <b>Mensual</b>.</li>
         <li>Agrega la fecha de inicio y fin, el motivo y, si quieres, un archivo de soporte. Toca <b>Solicitar</b>.</li>
         <li>La solicitud queda en <b>Mis solicitudes</b> con estado “Necesita autorización” hasta que tu administrador la apruebe. Desde ahí puedes editarla o cancelarla.</li></ul></details>
       <details><summary>¿Cómo pido una tarjeta nueva (física o virtual) desde la plataforma web?</summary><ul>
@@ -427,7 +427,7 @@ const STEPS = [
   do:[`Inicia sesión y entra a ${B('Tarjetas')} → ${B('Solicitar nueva tarjeta')}.`,`Elige el tipo:<br>• <b>Física estándar</b>: para tiendas físicas. Una por usuario.<br>• <b>Virtual</b>: para compras en línea y suscripciones. Crea las que necesites.<br>• <b>World Elite</b>: exclusiva para personas autorizadas por la compañía.`],
   screen:OLD[5].screen},
  {st:1, title:'Completa y envía tu solicitud', intro:'Entre más clara sea, más fácil es aprobarla.',
-  do:[`Ponle un <b>nombre</b>, define el <b>límite</b> en COP y cada cuánto se reinicia (diario, semanal, mensual o de por vida).`,`Elige las <b>fechas</b> de inicio y fin, explica el <b>motivo</b> y, si quieres, adjunta un soporte.`,`Haz clic en ${B('Solicitar Tarjeta')} y sigue el estado en ${B('Tarjetas')} → ${B('Mis solicitudes')}.`],
+  do:[`Ponle un <b>nombre</b>, define el <b>límite</b> en COP y, en cada cuánto se reinicia, selecciona <b>Mensual</b>.`,`Elige las <b>fechas</b> de inicio y fin, explica el <b>motivo</b> y, si quieres, adjunta un soporte.`,`Haz clic en ${B('Solicitar Tarjeta')} y sigue el estado en ${B('Tarjetas')} → ${B('Mis solicitudes')}.`],
   notes:[['tip','Cuando la aprueben: si es <strong>virtual</strong>, añádela a tu billetera y úsala de inmediato. Si es <strong>física</strong>, sigue con la Etapa 3.'],['tip','La tarjeta funciona desde las 12:00 a. m. (UTC) de la fecha de inicio hasta las 11:59 p. m. (UTC) de la fecha de fin.']],
   screen:OLD[7].screen},
 
@@ -484,7 +484,7 @@ const SCENES_REQ=[
   draw:()=>{const sel='v'; return `<p class="s-h">Solicitar Tarjeta</p><p class="s-sub">¿Qué tipo de tarjeta necesita?</p><div class="opt"><img class="thumb" src="${IMG.fisica}" alt=""><span><b>Tarjeta física estándar</b><ul><li>Sin anualidad</li><li>Ideal para compras en tiendas físicas</li><li>Limitada a una tarjeta por usuario</li></ul></span></div><div class="opt${sel==='v'?' sel':''}"><img class="thumb" src="${IMG.virtual}" alt=""><span><b>Tarjeta virtual</b><ul><li>Sin anualidad</li><li>Ideal para compras online y suscripciones</li><li>Crea tantas como necesites</li></ul></span></div><div class="opt"><img class="thumb" src="${IMG.we}" alt=""><span><b>Tarjeta World Elite<span class="wepill">Exclusiva</span></b><ul><li>Solo para personas autorizadas por la compañía</li></ul></span></div>`;}},
  {cap:'Ponle un <b>nombre</b> a la tarjeta. Te ayuda a clasificar tus gastos.', dur:5200, typing:NAME.length,
   draw:(n)=>`<p class="s-h">Tarjeta virtual</p><div class="s-field" style="border-color:var(--screen-ink)"><small>Nombre de la tarjeta</small>${typed(NAME,n)||'&nbsp;'}</div><p class="s-sub">Por ejemplo: gastos de viaje, software, eventos</p><div class="s-field"><small>Límite de gasto</small><span class="s-sub">$ Establece un límite · COP</span></div><div class="s-field"><small>Frecuencia</small>Mensual ▾</div>`},
- {cap:'Define el <b>límite de gasto</b> y cada cuánto se reinicia. Con <b>Mensual</b>, el límite se restablece cada mes.', dur:5200,
+ {cap:'Define el <b>límite de gasto</b> y en la frecuencia selecciona <b>Mensual</b>: el límite se restablece cada mes.', dur:5200,
   draw:()=>`<p class="s-h">Tarjeta virtual</p><div class="s-field"><small>Nombre de la tarjeta</small>${NAME}</div><div class="s-field" style="display:flex;justify-content:space-between;border-color:var(--screen-ink)"><span><small>Límite de gasto</small>$ 1.000.000</span><span class="s-sub" style="align-self:end">COP</span></div><div class="dd pop"><div>Diario</div><div>Semanal</div><div class="on">Mensual ✓</div><div>De por vida</div></div>`},
  {cap:'Elige la <b>fecha de inicio y finalización</b>: el periodo en que la tarjeta estará activa.', dur:4400,
   draw:()=>`<p class="s-h">Fecha de inicio y finalización</p><p class="s-sub">Activa desde las 12:00 a. m. (UTC) del inicio hasta las 11:59 p. m. (UTC) del final.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><div class="s-field tap" style="border-color:var(--screen-ink)"><small>Fecha de inicio</small>01/11/2026</div><div class="s-field"><small>Finalización</small>30/11/2026</div></div>`},
